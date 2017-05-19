@@ -1,0 +1,14 @@
+<!-- NAVIGATION -->
+<md-toolbar class="md-menu-toolbar"
+	ng-controller="HeaderCtrl as headerObj">
+<div class="container-fluid">
+	<div>
+		<div class="afterlogin" ng-if="authenticated">Hello {{username}}
+			<md-button ng-click="headerObj.logOut()" aria-label="Sign out">
+			Sign out </md-button>
+		</div>
+
+	</div>
+
+</div>
+</md-toolbar>

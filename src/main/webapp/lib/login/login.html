@@ -1,0 +1,24 @@
+
+<div class="container-fluid white-background">
+    <div class="section-padding">
+        <div class="row " ng-controller="LoginCtrl as loginObj">
+             <div class="col-xs-12 col-md-offset-3 col-md-6">
+                <h2 class="text-center main-heading font-30" style="padding-top:80px !important">Login to your account</h2> 
+                <form role="form" class=" padding-top-medium" name="loginObj.loginForm" id="loginForm" ng-submit="loginObj.validateFormOnSubmit(loginObj.loginData)" novalidate autocomplete="off">
+					<div style="display: none;">
+					       <input  clear-btn type="password"/>
+					</div>
+                    <md-input-container class="md-block" md-is-error="(loginObj.loginForm.username.$invalid && loginObj.loginForm.username.$dirty) || (loginObj.loginForm.username.$invalid && loginObj.loginForm.$submitted)">
+                        <label><span class="hidden-xs"> Username</span></label>
+                       <input type="text" md-autofocus class="input-effects" input-animations name="username" ng-model="loginObj.loginData.username" required>
+                    </md-input-container>
+                    <div class="row margin-top-small">
+                        <div class="col-xs-12">
+                            <md-button type="submit" ng-disabled = "$root.waitingForHttp" class="md-raised btn-block md-primary no-margin-left no-margin-right primary-btn" aria-label="Login"> Login </md-button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

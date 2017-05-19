@@ -1,0 +1,43 @@
+<md-dialog aria-label="{{addStockObj.modelTitle}}">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>{{addStockObj.modelTitle}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="addStockObj.cancel()" aria-label="Close {{addStockObj.modelTitle}} Dialog">X <md-tooltip>Close</md-tooltip></md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+          <form role="form" class=" form-horizontal" name="addStockObj.addStockForm" id="addStockForm"  novalidate>
+            <div class="form-group">            
+              <div class="col-xs-12 col-md-6">
+                 <md-input-container>
+                    <label>Stock Name</label>
+                 	<input type="text" name="name" ng-model="addStockObj.stock.name"
+                     ng-maxlength="30" ng-minlength="1" required 
+                     ng-class ="{invalid:addStockObj.addStockForm.name.$invalid}"> 
+                  </md-input-container>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                 <md-input-container>
+                    <label>Stock Symbol</label>
+                 	<input type="text" name="symbol" ng-model="addStockObj.stock.symbol"
+                     ng-maxlength="30" ng-minlength="1" required 
+                     ng-class ="{invalid:addStockObj.addStockForm.symbol.$invalid}"> 
+                  </md-input-container>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                 <md-input-container>
+                    <label>Stock Price</label>
+                 	<input type="text" name="price" ng-model="addStockObj.stock.basePrice"
+                     ng-maxlength="10" ng-minlength="1" required 
+                     ng-class ="{invalid:addStockObj.addStockForm.price.$invalid}"> 
+                  </md-input-container>
+              </div>
+            </div> 
+          </form>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button class="md-raised md-accent secondary-btn" ng-click="addStockObj.cancel()" aria-label="Cancel"> Cancel </md-button>
+    <md-button class="md-raised md-primary primary-btn " ng-click="addStockObj.save()" aria-label="Save"> Save </md-button>
+  </md-dialog-actions>
+</md-dialog>

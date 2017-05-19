@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Hot Stock - Stock Exchange Online</title>
+<base href="/hot-stock/">
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" async defer>
+<link rel="stylesheet" href="assets/css/angular-material.min.css" async	defer>
+<link rel="stylesheet" href="assets/css/md-data-table.min.css" async defer>
+	
+<link rel="stylesheet" href="assets/css/angular-toastr.min.css" async defer>
+<!-- <link rel="stylesheet" href="assets/css/style.css" async defer> -->
+
+<script type="text/javascript" src="assets/js/jquery-3.1.0.min.js"></script>
+<script src="assets/js/angular/angular.min.js"></script>
+<script src="assets/js/angular/angular-aria.min.js"></script>
+<script src="assets/js/angular/angular-animate.min.js"></script>
+<script src="assets/js/angular/angular-material.min.js"></script>
+<script src="assets/js/angular/angular-ui-router.min.js"></script>
+<script src="assets/js/angular/ocLazyLoad.min.js"></script>
+<script src="assets/js/angular/angular-toastr.tpls.min.js"></script>
+<script src="assets/js/angular/angular-messages.min.js"></script>
+<script src="assets/js/angular/md-data-table.js"></script>
+<script src="assets/js/angular/fixed-table-header.min.js"></script>
+
+
+<script src="lib/app.js"></script>
+<script src="lib/app.admin.js"></script>
+<script src="lib/app.broker.js"></script>
+
+<script src="lib/common-factory/principal-factory.js"></script>
+
+<script src="lib/header/headerCtrl.js"></script>
+<script src="lib/footer/footerCtrl.js"></script>
+
+</head>
+<body ng-cloak ng-controller="ParentCtrl as parentObj" ng-app="stockApp">
+
+	<!-- HEADER -->
+	<header class="header md-whiteframe-2dp"
+		ng-include="'lib/header/header.html'"></header>
+
+	<!-- CONTENT -->
+	<div ui-view class="main-section"></div>
+	
+	<!-- FOOTER -->
+	<footer class="footer footersection"
+		ng-include="'lib/footer/footer.html'"></footer>
+
+</body>
+</html>

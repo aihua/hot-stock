@@ -1,0 +1,26 @@
+Hot Stock is a stock exchange. Brokers can bid for various stocks and can buy sell these. 
+Brokers use web interface to login to their accounts and buy/sell stocks. 
+In addition, there is an admin interface to add/remove stocks.
+
+Actors and use cases
+
+Brokers : They are individuals who login to HotStock application to buy/sell stocks.
+# Login: Each Brokers get a login page. Brokers provide their login name to login. For simplicity there is no password. 
+# View Stocks: Post Login Broker can view all available stocks and their last trading price. 
+  The last traded price is updated automatically (no screen refresh required) 
+# Buy stocks: Broker can buy stocks by entering price at which they would like to buy. 
+  For simplicity, buyer can buy only 1 unit at a time. System broadcasts buy intent to other brokers who own stock (seller). 
+  Seller can chose to accept or decline the offer. If seller accepts a sale is considered done and ownership is transferred 
+  from seller to buyer. The bid price becomes the last traded price for the stock. 
+# Sell stocks: Broker receive buy offers from other brokers (buyer) which they can accept or decline.
+
+Admin: Adds stock for trading. 
+# Create Stock: Admin creates new stocks in the system by entering Name and Symbol and base price. 
+# Transfer Stock: Admin can transfer stocks (which do not have any owner) to any broker. 
+  The broker thus becomes owner of the stock and can sell to other brokers. 
+# Transaction Report: Admin can view trading report which lists the trades for the day. 
+  A trade has buyer, seller, qty and price information.
+
+Your task is to create and submit the following. 
+- REST API endpoint to support use cases for various actors as described above 
+- Web Interface to implement UI for various actors as described above

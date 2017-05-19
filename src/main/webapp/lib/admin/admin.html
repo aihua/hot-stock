@@ -1,0 +1,92 @@
+<div class="container">
+	<div class="section-padding">
+		<div class="row">
+			<div class="col-xs-8 col-md-10">
+				<h3 class="no-padding">Stock Management</h3>
+			</div>
+			<div class="col-xs-4 col-md-2">
+				<div class="button-group-alignment"
+					ng-switch="adminObj.activeTabIndex">
+					<div ng-switch-when="1">
+						<md-button type="button" class="md-raised add-button"
+							ng-click="adminObj.showAddStockModal($event, 'Add Stock',0)"
+							aria-label="Add Stock"> Add Stock </md-button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<md-content>
+        <md-tabs md-dynamic-height md-border-bottom md-selected="adminObj.activeTabIndex">
+        	<md-tab label="Current Tradings" ng-click="adminObj.updateTrades()">
+                <md-content class="padding-dgn-small" ng-if="adminObj.trades.length > 0">
+                    <md-list>
+	                    	<md-list-item class="md-2-line" ng-repeat="trade in adminObj.trades">
+								<md-card> 
+									 <md-card-content>									   
+									   <div>
+									   		<span  class="col-xs-12 col-md-6"><strong>Stock Name: </strong><span>{{trade.stock.name}}</span></span>
+									   		<span class="col-xs-12 col-md-6"><strong>Stock Symbol: </strong><span>{{trade.stock.symbol}}</span></span>
+									   	</div>
+									   <div>
+									   		<span  class="col-xs-12 col-md-6"><strong>Base Price: </strong><span>{{trade.stock.basePrice}}</span></span>
+									   		<span class="col-xs-12 col-md-6"><strong>Last Traded Price: </strong><span>{{trade.stock.lastTradedPrice}}</span></span>
+									   	</div>
+									   
+									   <div>
+									   		<span  class="col-xs-12 col-md-6"><strong>Buyer: </strong><span>{{trade.buyer.username}}</span></span>
+									   		<span class="col-xs-12 col-md-6"><strong>Seller: </strong><span>{{trade.seller.username}}</span></span>
+									   </div>
+									 </md-card-content>
+								</md-card>    
+  							</md-list-item>
+	                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab label="Stocks" ng-click="adminObj.updateStocks()">
+                <md-content class="padding-dgn-small"> 
+                    <div class="row no-margin-left no-margin-right">
+                        <div class="col-xs-12 no-padding-left no-padding-right">
+                           <div class="md-headline" style="overflow:hidden !important" ng-if="adminObj.stocks.length==0">You have not added any Stocks.Click on "+" icon to add Stock</div>					
+                            <section class="usertable clearfix" ng-if="adminObj.stocks.length > 0">
+                                <md-card class=" border-none">
+                                    <md-table-container>
+                                        <table md-table>
+                                            <thead md-head md-order="adminObj.query.order" md-on-reorder="adminObj.onReorder">
+                                            <tr md-row>
+                                                <th md-column md-order-by="id"><span>Stock ID | </span></th>
+                                                <th md-column md-order-by="name"><span>Stock Name | </span></th>
+                                                <th md-column md-order-by="symbol"><span>Symbol | </span></th>
+                                                <th md-column md-order-by="basePrice"><span>Base Price | </span></th>
+                                                <th md-column><span>Actions</span></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody md-body>
+                                            <tr md-row ng-repeat="stock in adminObj.stocks | filter : search : strict | orderBy: adminObj.query.order | 
+                                            		limitTo: adminObj.query.limit : (adminObj.query.page -1) * adminObj.query.limit |  filter : search">
+                                                <td md-cell>{{ stock.id}}</td>
+                                                <td md-cell><span ng-if="stock.name">{{ stock.name }}</span></td>
+                                                <td md-cell><span ng-if="stock.symbol">{{ stock.symbol }}</span></td>
+                                                <td md-cell><span ng-if="stock.basePrice">{{stock.basePrice}}</span></td>
+                                                <td md-cell class="actions">
+                                                    <a href="javascript:void(0)" ng-hide="stock.owner != null" ng-click="adminObj.showTransferStockModal($event, 'Transfer Stock', stock)">
+                                                        <span>
+                                                          <i class="edit"></i>Transfer Stock
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </md-table-container>
+                                    <md-table-pagination md-boundary-links="true" md-limit="adminObj.query.limit" md-page="adminObj.query.page" md-total="{{adminObj.stocks.length}}" md-on-paginate="adminObj.onPaginate" md-page-select></md-table-pagination>
+                                </md-card>
+                            </section>
+                        </div>
+                    </div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+ 
+	</div>
+</div>

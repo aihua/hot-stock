@@ -1,0 +1,64 @@
+<md-dialog aria-label="{{transferStockObj.modelTitle}}">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>{{transferStockObj.modelTitle}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="transferStockObj.cancel()" aria-label="Close {{transferStockObj.modelTitle}} Dialog">X <md-tooltip>Close</md-tooltip></md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+  
+  		<div class="form-group"> 
+  		<h4>Stock Details</h4>           
+              <div class="col-xs-12 col-md-6">
+                 <span>Stock Name: </span> <span>{{transferStockObj.stock.name}}</span>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                 <span>Stock Symbol: </span> <span>{{transferStockObj.stock.symbol}}</span>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                 <span>Stock Base Price: </span> <span>{{transferStockObj.stock.basePrice}}</span>
+              </div>
+            </div> 
+  			<div class="col-xs-12 col-md-6">
+          <form role="form" class=" form-horizontal" name="transferStockObj.transferStockForm" id="addStockForm"  novalidate>
+            <div class="form-group">            
+              <div class="col-xs-12 col-md-6" ng-class ="{invalidAutoComplete:transferStockObj.transferStockForm.roleAutoComplete.$invalid && transferStockObj.buttonclick }">
+                  <md-autocomplete
+                         required 
+                         md-input-name="transferAutoComplete"
+                         md-min-length="0"
+                         md-input-minlength="1"
+                         md-input-maxlength="50"
+                         md-selected-item="transferStockObj.selectedBroker"
+                         md-search-text-change="transferStockObj.searchTextChange(transferStockObj.username)"
+                         md-search-text="transferStockObj.username"
+                         md-selected-item-change="transferStockObj.onSelectedBroker(item)"
+                         md-items="item in transferStockObj.searchBrokers(transferStockObj.username)"
+                         md-item-text="item.username"
+                         md-floating-label="Broker">
+                     <md-item-template>
+                         <span md-highlight-text="transferStockObj.username" md-highlight-flags="^i">{{item.username}}</span>
+                     </md-item-template>
+                        <!-- <div class="error-messages" ng-messages="transferStockObj.transferStockForm.transferAutoComplete.$error"
+			                  ng-show="  transferStockObj.transferStockForm.$submitted 
+			                  		    || transferStockObj.transferStockForm.transferAutoComplete.$dirty 
+			                  			|| (transferStockObj.transferStockForm.transferAutoComplete.$invalid && transferStockObj.buttonclick)">
+			                     <div ng-message="required">role is required field!</div>
+			                     <div ng-message="maxlength">Entry is too long!</div>
+			                     <div ng-message="minlength">Entry is too short!</div>
+                            </div> -->
+                     <md-not-found>
+                         No Role matching "{{transferStockObj.username}}" were found.
+                     </md-not-found>
+                 </md-autocomplete>
+              </div>
+            </div> 
+          </form>
+          </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button class="md-raised md-accent secondary-btn" ng-click="transferStockObj.cancel()" aria-label="Cancel"> Cancel </md-button>
+    <md-button class="md-raised md-primary primary-btn " ng-click="transferStockObj.transferStock()" aria-label="Save"> Transfer Stock </md-button>
+  </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,102 @@
+<div class="container">
+	<div class="section-padding">
+		<md-content>
+			<md-tabs md-dynamic-height md-border-bottom md-selected="brokerObj.activeTabIndex">
+				<md-tab label="Available Stocks" ng-click="brokerObj.updateStocks()">
+	                <md-content class="padding-dgn-small">
+	                    <md-list>
+	                    	<md-list-item class="md-2-line" ng-repeat="stock in brokerObj.stocks">
+								<md-card> 
+									 <md-card-content>									   
+									   <div><strong>Stock Name: </strong><span>{{stock.name}}</span></div>
+									   <div><strong>Stock Symbol: </strong><span>{{stock.symbol}}</span></div>
+									   <div><strong>Base Price: </strong><span>{{stock.basePrice}}</span></div>
+									   <div><strong>Last Traded Price: </strong><span>{{stock.lastTradedPrice}}</span></div>
+									   <div>
+										   	<a href="javascript:void(0)" ng-click="brokerObj.showBuyStockModal($event, 'Buy Stock', stock)">
+		                                       <span>Buy Stock</span>
+		                                    </a>
+									   </div>
+									 </md-card-content>
+								</md-card>    
+  							</md-list-item>
+	                    </md-list>
+	                </md-content>
+            	</md-tab>
+            	<md-tab label="My Stocks" ng-click="brokerObj.updateMyStocks()">
+	                <md-content class="padding-dgn-small">
+	                    <md-list>
+	                    	<md-list-item class="md-2-line" ng-repeat="stock in brokerObj.myStocks">
+								<md-card> 
+									 <md-card-content>									   
+									   <div><strong>Stock Name: </strong><span>{{stock.name}}</span></div>
+									   <div><strong>Stock Symbol: </strong><span>{{stock.symbol}}</span></div>
+									   <div><strong>Base Price: </strong><span>{{stock.basePrice}}</span></div>
+									   <div><strong>Last Traded Price: </strong><span>{{stock.lastTradedPrice}}</span></div>
+									   <div>
+								   		<a href="javascript:void(0)" ng-click="brokerObj.showSellStockModal($event, 'Sell Stock', stock)">
+	                                       <span>Offer Stock(Sell Offer)</span>
+	                                    </a>
+		                               </div>
+									 </md-card-content>
+								</md-card> 
+  							</md-list-item>
+	                    </md-list>
+	                </md-content>
+            	</md-tab>
+            	<md-tab label="Buy Intents" ng-click="brokerObj.updateBuyIntents()">
+	                <md-content class="padding-dgn-small">
+	                    <md-list>
+	                    	<md-list-item class="md-2-line" ng-repeat="intent in brokerObj.buyIntents">
+								<md-card> 
+									 <md-card-content>									   
+									   <div><strong>Stock Name: </strong><span>{{intent.stock.name}}</span></div>
+									   <div><strong>Stock Symbol: </strong><span>{{intent.stock.symbol}}</span></div>
+									   <div><strong>Price: </strong><span>{{intent.price}}</span></div>
+									   <div><strong>Last Traded Price: </strong><span>{{intent.stock.lastTradedPrice}}</span></div>
+									   <div ng-if="!intent.accepted && !intent.declined">
+								   		<a href="javascript:void(0)" ng-click="brokerObj.accept(intent)">
+	                                       <span>Accept</span>
+	                                    </a>&nbsp | &nbsp <a href="javascript:void(0)" ng-click="brokerObj.decline(intent)">
+	                                       <span>Decline</span>
+	                                    </a>
+		                               </div>
+		                               <div ng-if="!intent.accepted || intent.declined">
+								   		<span>Declined</span>
+		                               </div>
+									 </md-card-content>
+								</md-card> 
+  							</md-list-item>
+	                    </md-list>
+	                </md-content>
+            	</md-tab>
+            	<md-tab label="Sell Offers" ng-click="brokerObj.updateSellIntents()">
+	                <md-content class="padding-dgn-small">
+	                    <md-list>
+	                    	<md-list-item class="md-2-line" ng-repeat="intent in brokerObj.sellIntents">
+								<md-card> 
+									 <md-card-content>									   
+									   <div><strong>Stock Name: </strong><span>{{intent.stock.name}}</span></div>
+									   <div><strong>Stock Symbol: </strong><span>{{intent.stock.symbol}}</span></div>
+									   <div><strong>Price: </strong><span>{{intent.price}}</span></div>
+									   <div><strong>Last Traded Price: </strong><span>{{stock.lastTradedPrice}}</span></div>
+									   <div ng-if="!intent.accepted">
+								   		<a href="javascript:void(0)" ng-click="brokerObj.acceptSell(intent)">
+	                                       <span>Accept</span>
+	                                    </a><!-- &nbsp | &nbsp <a href="javascript:void(0)" ng-click="brokerObj.declineSell(intent)">
+	                                       <span>Decline</span>
+	                                    </a> -->
+		                               </div>
+		                               <div ng-if="intent.accepted">
+								   		<span>SoldOut</span>
+		                               </div>
+									 </md-card-content>
+								</md-card> 
+  							</md-list-item>
+	                    </md-list>
+	                </md-content>
+            	</md-tab>
+			</md-tabs>
+		</md-content>
+	</div>
+</div>
