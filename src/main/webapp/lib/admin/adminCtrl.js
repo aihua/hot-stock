@@ -2,6 +2,7 @@ function AdminCtrl($window, $scope, $state, $http, $mdDialog, AdminFactory) {
 	var that = this;
 	that.stocks = [];
 	that.trades = [];
+	that.users = [];
 	that.activeTabIndex = 0;
 	
 	this.query = {
@@ -50,9 +51,34 @@ function AdminCtrl($window, $scope, $state, $http, $mdDialog, AdminFactory) {
         });
     }
     
+    function showAddBrokerModal(ev, modelTitle, data) {    	
+        $mdDialog.show({
+            controller: 'AddUserCtrl',
+            controllerAs: 'addUserObj',
+            templateUrl: 'lib/admin/add-user.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false,
+            locals: {
+            	user: data,
+            	updateBrokers: updateBrokers,
+            	modelTitle: modelTitle
+            },
+            bindToController: true
+        });
+    }
+    
     function allStocks() {
     	AdminFactory.getAllStocks().success(function(data){
     		that.stocks = data;
+    	}).error(function(data){
+    		toastr.error("Error", data.error);
+    	})
+    }
+    
+    function getBrokers() {
+    	AdminFactory.searchBrokers('').success(function(data){
+    		that.users = data;
     	}).error(function(data){
     		toastr.error("Error", data.error);
     	})
@@ -70,6 +96,10 @@ function AdminCtrl($window, $scope, $state, $http, $mdDialog, AdminFactory) {
     	allStocks();
     }
     
+    function updateBrokers() {
+    	getBrokers();
+    }
+    
     function updateTrades() {
     	tradesForTheDay();
     }
@@ -84,7 +114,9 @@ function AdminCtrl($window, $scope, $state, $http, $mdDialog, AdminFactory) {
 		showAddStockModal: showAddStockModal,
 		showTransferStockModal: showTransferStockModal,
 		updateStocks: updateStocks,
-		updateTrades: updateTrades
+		updateTrades: updateTrades,
+		updateBrokers: updateBrokers,
+		showAddBrokerModal: showAddBrokerModal
 	});
 }
 angular

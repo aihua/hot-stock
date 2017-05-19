@@ -21,6 +21,10 @@ public interface IStockRepository extends JpaRepository<Stock, Long> {
     
     public List<Stock> findByOwner(User owner);
     
+    public Stock findByName(String name);
+    
+    public Stock findBySymbol(String symbol);
+    
     @Query("SELECT stock FROM Stock stock WHERE stock.active = true AND stock.owner.username != ?1")
     public List<Stock> findAllActive(String username);
 }

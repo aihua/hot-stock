@@ -25,6 +25,10 @@ function AdminFactory($http) {
     	return $http.get("/hot-stock/trades/today");
     }
     
+    AdminFactory.saveBroker = function(user) {
+    	return $http.post('/hot-stock/users/save-broker', user);
+    }
+    
 	return AdminFactory;	
 }
 angular

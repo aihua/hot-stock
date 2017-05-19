@@ -1,0 +1,27 @@
+<md-dialog aria-label="{{addUserObj.modelTitle}}">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>{{addUserObj.modelTitle}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="addUserObj.cancel()" aria-label="Close {{addUserObj.modelTitle}} Dialog">X <md-tooltip>Close</md-tooltip></md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+          <form role="form" class=" form-horizontal" name="addUserObj.addUserForm" id="addUserForm"  novalidate>
+            <div class="form-group">            
+              <div class="col-xs-12 col-md-12">
+                 <md-input-container>
+                    <label>UserName</label>
+                 	<input type="text" name="name" ng-model="addUserObj.user.username"
+                     ng-maxlength="30" ng-minlength="1" required 
+                     ng-class ="{invalid:addUserObj.addUserForm.name.$invalid}"> 
+                  </md-input-container>
+              </div>
+            </div> 
+          </form>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button class="md-raised md-accent secondary-btn" ng-click="addUserObj.cancel()" aria-label="Cancel"> Cancel </md-button>
+    <md-button class="md-raised md-primary primary-btn " ng-click="addUserObj.save()" aria-label="Save"> Save </md-button>
+  </md-dialog-actions>
+</md-dialog>

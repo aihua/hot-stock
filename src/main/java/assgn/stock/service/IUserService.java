@@ -15,6 +15,8 @@ import assgn.stock.utils.Role;
  */
 public interface IUserService {
     
+    public UserDTO saveBroker(UserDTO userDTO) throws HotStockException;
+    
     public UserDTO findByUsername(String username) throws HotStockException;
     
     public List<UserDTO> findUsersByRoleAndUsername(Role role, String username) throws HotStockException;

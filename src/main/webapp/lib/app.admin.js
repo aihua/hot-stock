@@ -27,7 +27,8 @@ angular.module('stockApp.admin')
                          'lib/admin/adminCtrl.js',
                          'lib/admin/addStockCtrl.js',
                          'lib/admin/transferStockCtrl.js',
-                         'lib/admin/adminFactory.js'
+                         'lib/admin/adminFactory.js',
+                         'lib/admin/addUserCtrl.js'
                         ]);
                     }
                 }

@@ -51,6 +51,15 @@ public class StockServiceImpl implements IStockService {
     public StockDTO saveOrUpdateStock(StockDTO stockDTO) throws HotStockException {
         logger.info("Entered saveOrUpdateStock");
         try {
+            Stock nameStock = stockRepository.findByName(stockDTO.getName());
+            if(nameStock != null) {
+                throw new HotStockException("Stock already Exists.");
+            }
+            Stock symbolStock = stockRepository.findBySymbol(stockDTO.getSymbol());
+            if(symbolStock != null) {
+                throw new HotStockException("Stock Symol already used. Use another One.");
+            }
+            
             Stock stock = mapper.map(stockDTO, Stock.class);
             
             User addedBy = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -66,6 +75,8 @@ public class StockServiceImpl implements IStockService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -131,6 +142,8 @@ public class StockServiceImpl implements IStockService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -180,6 +193,8 @@ public class StockServiceImpl implements IStockService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 

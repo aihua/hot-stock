@@ -106,6 +106,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -142,6 +144,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -164,6 +168,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -188,6 +194,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -212,6 +220,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -236,6 +246,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -273,6 +285,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
@@ -292,6 +306,8 @@ public class TradeServiceImpl implements ITradeService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 

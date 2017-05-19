@@ -43,6 +43,31 @@ public class UserServiceImpl implements IUserService {
     private Mapper mapper;
     
     @Override
+    public UserDTO saveBroker(UserDTO userDTO) throws HotStockException {
+        logger.info("Entered saveBroker");
+        try {
+            User existingUser = userRepository.findByUsername(userDTO.getUsername());
+            if(existingUser != null) {
+                throw new HotStockException("Username already Exists.");
+            }
+            
+            User user = mapper.map(userDTO, User.class);
+            user.setRole(Role.ROLE_BROKER);
+            
+            userRepository.save(user);
+            return mapper.map(user, UserDTO.class);
+        } catch(DataAccessException dataAccessException) {
+            logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
+            throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
+        } catch(Exception exception) {
+            logger.error("Exception catched with message: " + exception.getMessage(), exception);
+            throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 
+        }
+    }
+    
+    @Override
     public UserDTO findByUsername(String username) throws HotStockException {
         logger.info("Entered findByUsername with username: " + username);
         try {
@@ -54,6 +79,8 @@ public class UserServiceImpl implements IUserService {
         } catch(DataAccessException dataAccessException) {
             logger.error("Exception catched with message: " + dataAccessException.getMessage(), dataAccessException);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), dataAccessException); 
+        } catch(HotStockException hotStockException){
+            throw hotStockException;
         } catch(Exception exception) {
             logger.error("Exception catched with message: " + exception.getMessage(), exception);
             throw new HotStockException(messageUtils.getMessage("common.fetch.error"), exception); 

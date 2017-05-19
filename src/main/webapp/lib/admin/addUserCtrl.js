@@ -1,30 +1,29 @@
-function AddStockCtrl($http, $rootScope, toastr, $mdDialog, AdminFactory, $scope) {
+function AddUserCtrl($http, $rootScope, toastr, $mdDialog, AdminFactory, $scope) {
     var that = this ;
     that.modelTitle = that.locals.modelTitle;
-    that.stock = {};
+    that.user = {};
     function hide(){
         $mdDialog.hide();
-        that.locals.updateStocks();
+        that.locals.updateBrokers();
     }
 
     function cancel() {
         $mdDialog.cancel();
-		that.locals.updateStocks();
+        that.locals.updateBrokers();
     }
     function save() {
-    	if(!that.addStockForm.$valid) {
-    		toastr.error("Error", "Please fill all the required fields.");
+    	if(!that.addUserForm.$valid) {
+    		toastr.error("Error", "Please Enter Username.");
     		return;
     	}
     	
-    	AdminFactory.saveStock(that.stock).success(function(data){
-    		toastr.success("Success", "Stock Saved Successfully.");
+    	AdminFactory.saveBroker(that.user).success(function(data){
+    		toastr.success("Success", "User Saved Successfully.");
     		hide();
     	}).error(function(data){
     		toastr.error("Error", data.error);
     	});
     }
-    
     angular.extend(this, {
     	save: save,
     	hide: hide,
@@ -34,4 +33,4 @@ function AddStockCtrl($http, $rootScope, toastr, $mdDialog, AdminFactory, $scope
 
 angular
     .module('stockApp')
-    .controller('AddStockCtrl', AddStockCtrl);
+    .controller('AddUserCtrl', AddUserCtrl);
